@@ -9,6 +9,8 @@ local red_wire = hsl("#ff2e2e")
 local yellow_wire = hsl("#f8dc75")
 local blue_wire = hsl("#5e7eb5")
 local orange_wire = hsl("#fc9a1a")
+local pink_wire = hsl("#bd236c")
+local purple_wire = hsl("#581458")
 -------------------------------------
 
 --------------- other ---------------
@@ -46,7 +48,31 @@ local theme = lush(function(injected_functions)
     Label          {fg=green_wire}, --   case, default, etc.
     Operator       {fg=yellow_wire}, --   "sizeof", "+", "*", etc.
     Keyword        {fg=red_wire}, --   any other keyword
-    Exception      {fg=orange_wire}, --   try, catch, throw
+    Exception      {fg=red_wire}, --   try, catch, throw
+
+    PreProc        {fg=pink_wire}, -- (*) Generic Preprocessor
+    Include        {fg=pink_wire}, --   Preprocessor #include
+    Define         {fg=pink_wire}, --   Preprocessor #define
+    Macro          {fg=pink_wire}, --   Same as Define
+    PreCondit      {fg=pink_wire}, --   Preprocessor #if, #else, #endif, etc.
+
+    Type           {fg=purple_wire.lighten(50)}, -- (*) int, long, char, etc.
+    StorageClass   {fg=purple_wire.lighten(50)}, --   static, register, volatile, etc.
+    Structure      {fg=purple_wire.lighten(50)}, --   struct, union, enum, etc.
+    Typedef        {fg=purple_wire.lighten(50)}, --   A typedef
+
+    Special        {fg=orange_wire}, -- (*) Any special symbol
+    SpecialChar    {fg=orange_wire}, --   Special character in a constant
+    Tag            {fg=orange_wire}, --   You can use CTRL-] on this
+    Delimiter      {fg=orange_wire}, --   Character that needs attention
+    SpecialComment {fg=orange_wire}, --   Special things inside a comment (e.g. '\n')
+    Debug          {fg=orange_wire}, --   Debugging statements
+
+    Underlined     { gui = "underline" }, -- Text that stands out, HTML links
+    Ignore         {fg=red_wire}, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
+    Error          {fg=red_wire}, -- Any erroneous construct
+    Todo           {fg=red_wire}, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+
 
     -- ColorColumn    { }, -- Columns set with 'colorcolumn'
     -- Conceal        { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
@@ -110,43 +136,6 @@ local theme = lush(function(injected_functions)
     -- WinBar         { }, -- Window bar of current window
     -- WinBarNC       { }, -- Window bar of not-current windows
 
-    -- Common vim syntax groups used for all kinds of code and markup.
-    -- Commented-out groups should chain up to their preferred (*) group
-    -- by default.
-    --
-    -- See :h group-name
-    --
-    -- Uncomment and edit if you want more specific syntax highlighting.
- 
-    -- PreProc        { }, -- (*) Generic Preprocessor
-    -- Include        { }, --   Preprocessor #include
-    -- Define         { }, --   Preprocessor #define
-    -- Macro          { }, --   Same as Define
-    -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
-
-    -- Type           { }, -- (*) int, long, char, etc.
-    -- StorageClass   { }, --   static, register, volatile, etc.
-    -- Structure      { }, --   struct, union, enum, etc.
-    -- Typedef        { }, --   A typedef
-
-    -- Special        { }, -- (*) Any special symbol
-    -- SpecialChar    { }, --   Special character in a constant
-    -- Tag            { }, --   You can use CTRL-] on this
-    -- Delimiter      { }, --   Character that needs attention
-    -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
-    -- Debug          { }, --   Debugging statements
-
-    -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
-    -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-    -- Error          { }, -- Any erroneous construct
-    -- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-
-    -- These groups are for the native LSP client and diagnostic system. Some
-    -- other LSP clients may use these groups, or use their own. Consult your
-    -- LSP client's documentation.
-
-    -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
-    --
     -- LspReferenceText            { } , -- Used for highlighting "text" references
     -- LspReferenceRead            { } , -- Used for highlighting "read" references
     -- LspReferenceWrite           { } , -- Used for highlighting "write" references
@@ -154,8 +143,6 @@ local theme = lush(function(injected_functions)
     -- LspCodeLensSeparator        { } , -- Used to color the seperator between two or more code lens.
     -- LspSignatureActiveParameter { } , -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
 
-    -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
-    --
     -- DiagnosticError            { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
     -- DiagnosticWarn             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
     -- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
@@ -182,16 +169,6 @@ local theme = lush(function(injected_functions)
     -- DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
     -- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
 
-    -- Tree-Sitter syntax groups.
-    --
-    -- See :h treesitter-highlight-groups, some groups may not be listed,
-    -- submit a PR fix to lush-template!
-    --
-    -- Tree-Sitter groups are defined with an "@" symbol, which must be
-    -- specially handled to be valid lua code, we do this via the special
-    -- sym function. The following are all valid ways to call the sym function,
-    -- for more details see https://www.lua.org/pil/5.html
-    --
     -- sym("@text.literal")
     -- sym('@text.literal')
     -- sym"@text.literal"
