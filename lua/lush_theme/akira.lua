@@ -17,6 +17,8 @@ local purple_wire = hsl("#581458")
 local background = hsl("#262335")
 -------------------------------------
 
+-- print(background.lighten(50))
+
 local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
   return {
