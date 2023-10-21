@@ -41,79 +41,84 @@ local theme = lush(function(injected_functions)
 
     Normal         {fg=foreground, bg=background}, -- Normal text
 
+    -- Bars
+    StatusLine     {fg=yellow_wire, bg=background.lighten(10)}, -- Status line of current window
+    CursorLine     {bg = background.lighten(10)}, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    SignColumn     {bg = background}, -- Column where |signs| are displayed
+
     MsgArea        {bg=background}, -- Area for messages and cmdline
     Visual         {bg=background.lighten(10)}, -- Visual mode selection
     Search         {bg=yellow_wire}, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 
-    Cursor         {fg=blue_wire, bg=blue_wire.darken(50)}, -- Character under the cursor
-    CursorLine     {bg = background.lighten(10)}, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    TermCursor     {bg=undecided}, -- Cursor in a focused terminal
-    CurSearch      {bg=undecided}, -- Highlighting a search pattern under the cursor (see 'hlsearch')
-    lCursor        {bg=undecided}, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM       {bg=undecided}, -- Like Cursor, but used when in IME mode |CursorIM|
-    CursorColumn   {bg=undecided}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    -- Cursor: None of these options will apply currently. Need to look for a config/alacritty conflict.  
+    Cursor         {fg=undecided, bg=undecided}, -- Character under the cursor
+    TermCursor     {fg=undecided, bg=undecided}, -- Cursor in a focused terminal
+    CurSearch      {fg=undecided, bg=undecided}, -- Highlighting a search pattern under the cursor (see 'hlsearch')
+    lCursor        {fg=undecided, bg=undecided}, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM       {fg=undecided, bg=undecided}, -- Like Cursor, but used when in IME mode |CursorIM|
+    CursorColumn   {fg=undecided, bg=undecided}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    TermCursorNC   {fg=undecided, bg=undecided}, -- Cursor in an unfocused terminal
 
-    SignColumn     {bg = background.lighten(10)}, -- Column where |signs| are displayed
-    DiffAdd        {bg=green_wire}, -- Diff mode: Added line |diff.txt|
-    DiffDelete     {bg=red_wire}, -- Diff mode: Deleted line |diff.txt|
-    DiffChange     {bg=blue_wire}, -- Diff mode: Changed line |diff.txt|
-    DiffText       {bg=blue_wire}, -- Diff mode: Changed text within a changed line |diff.txt|
+    -- Diffs
+    DiffAdd        {fg=green_wire}, -- Diff mode: Added line |diff.txt|
+    DiffDelete     {fg=red_wire}, -- Diff mode: Deleted line |diff.txt|
+    DiffChange     {fg=blue_wire}, -- Diff mode: Changed line |diff.txt|
+    DiffText       {fg=blue_wire}, -- Diff mode: Changed text within a changed line |diff.txt|
 
-    LineNr         {fg=yellow_wire}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    LineNrAbove    {fg=yellow_wire}, -- Line number for when the 'relativenumber' option is set, above the cursor line
-    LineNrBelow    {fg=yellow_wire}, -- Line number for when the 'relativenumber' option is set, below the cursor line
-    CursorLineNr   {fg=yellow_wire}, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    -- Line Numbers
+    LineNr         {fg=yellow_wire, bg=background.lighten(10)}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    LineNrAbove    {fg=yellow_wire, bg=background.lighten(10)}, -- Line number for when the 'relativenumber' option is set, above the cursor line
+    LineNrBelow    {fg=yellow_wire, bg=background.lighten(10)}, -- Line number for when the 'relativenumber' option is set, below the cursor line
+    CursorLineNr   {fg=yellow_wire, bg=background.lighten(10)}, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     
-    ColorColumn    {fg=undecided.darken(50), bg=undecided}, -- Columns set with 'colorcolumn'
-    Conceal        {fg=undecided.darken(50), bg=undecided}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    Directory      {fg=undecided.darken(50), bg=undecided}, -- Directory names (and other special names in listings)
-    EndOfBuffer    {fg=undecided.darken(50), bg=undecided}, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
-    TermCursorNC   {fg=undecided.darken(50), bg=undecided}, -- Cursor in an unfocused terminal
-    ErrorMsg       {fg=undecided.darken(50), bg=undecided}, -- Error messages on the command line
-    VertSplit      {fg=undecided.darken(50), bg=undecided}, -- Column separating vertically split windows
-    Folded         {fg=undecided.darken(50), bg=undecided}, -- Line used for closed folds
-    FoldColumn     {fg=undecided.darken(50), bg=undecided}, -- 'foldcolumn'
-    IncSearch      {fg=undecided.darken(50), bg=undecided}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    Substitute     {fg=undecided.darken(50), bg=undecided}, -- |:substitute| replacement text highlighting
-    CursorLineFold {fg=undecided.darken(50), bg=undecided}, -- Like FoldColumn when 'cursorline' is set for the cursor line
-    CursorLineSign {fg=undecided.darken(50), bg=undecided}, -- Like SignColumn when 'cursorline' is set for the cursor line
-    MatchParen     {fg=undecided.darken(50), bg=undecided}, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg        {fg=undecided.darken(50), bg=undecided}, -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgSeparator   {fg=undecided.darken(50), bg=undecided}, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg        {fg=undecided.darken(50), bg=undecided}, -- |more-prompt|
-    NonText        {fg=undecided.darken(50), bg=undecided}, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    NormalFloat    {fg=undecided.darken(50), bg=undecided}, -- Normal text in floating windows.
-    FloatBorder    {fg=undecided.darken(50), bg=undecided}, -- Border of floating windows.
-    FloatTitle     {fg=undecided.darken(50), bg=undecided}, -- Title of floating windows.
-    NormalNC       {fg=undecided.darken(50), bg=undecided}, -- normal text in non-current windows
-    Pmenu          {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item.
-    PmenuSel       {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item.
-    PmenuKind      {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item "kind"
-    PmenuKindSel   {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item "kind"
-    PmenuExtra     {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item "extra text"
-    PmenuExtraSel  {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item "extra text"
-    PmenuSbar      {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Scrollbar.
-    PmenuThumb     {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Thumb of the scrollbar.
-    Question       {fg=undecided.darken(50), bg=undecided}, -- |hit-enter| prompt and yes/no questions
-    QuickFixLine   {fg=undecided.darken(50), bg=undecided}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    SpecialKey     {fg=undecided.darken(50), bg=undecided}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-    SpellBad       {fg=undecided.darken(50), bg=undecided}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-    SpellCap       {fg=undecided.darken(50), bg=undecided}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-    SpellLocal     {fg=undecided.darken(50), bg=undecided}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-    SpellRare      {fg=undecided.darken(50), bg=undecided}, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-    StatusLine     {fg=undecided.darken(50), bg=undecided}, -- Status line of current window
-    StatusLineNC   {fg=undecided.darken(50), bg=undecided}, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine        {fg=undecided.darken(50), bg=undecided}, -- Tab pages line, not active tab page label
-    TabLineFill    {fg=undecided.darken(50), bg=undecided}, -- Tab pages line, where there are no labels
-    TabLineSel     {fg=undecided.darken(50), bg=undecided}, -- Tab pages line, active tab page label
-    Title          {fg=undecided.darken(50), bg=undecided}, -- Titles for output from ":set all", ":autocmd" etc.
-    VisualNOS      {fg=undecided.darken(50), bg=undecided}, -- Visual mode selection when vim is "Not Owning the Selection".
-    WarningMsg     {fg=undecided.darken(50), bg=undecided}, -- Warning messages
-    Whitespace     {fg=undecided.darken(50), bg=undecided}, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-    Winseparator   {fg=undecided.darken(50), bg=undecided}, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-    WildMenu       {fg=undecided.darken(50), bg=undecided}, -- Current match in 'wildmenu' completion
-    WinBar         {fg=undecided.darken(50), bg=undecided}, -- Window bar of current window
-    WinBarNC       {fg=undecided.darken(50), bg=undecided}, -- Window bar of not-current windows
+    -- ColorColumn    {fg=undecided.darken(50), bg=undecided}, -- Columns set with 'colorcolumn'
+    -- Conceal        {fg=undecided.darken(50), bg=undecided}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+    -- Directory      {fg=undecided.darken(50), bg=undecided}, -- Directory names (and other special names in listings)
+    -- EndOfBuffer    {fg=undecided.darken(50), bg=undecided}, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    -- ErrorMsg       {fg=undecided.darken(50), bg=undecided}, -- Error messages on the command line
+    -- VertSplit      {fg=undecided.darken(50), bg=undecided}, -- Column separating vertically split windows
+    -- Folded         {fg=undecided.darken(50), bg=undecided}, -- Line used for closed folds
+    -- FoldColumn     {fg=undecided.darken(50), bg=undecided}, -- 'foldcolumn'
+    -- IncSearch      {fg=undecided.darken(50), bg=undecided}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    -- Substitute     {fg=undecided.darken(50), bg=undecided}, -- |:substitute| replacement text highlighting
+    -- CursorLineFold {fg=undecided.darken(50), bg=undecided}, -- Like FoldColumn when 'cursorline' is set for the cursor line
+    -- CursorLineSign {fg=undecided.darken(50), bg=undecided}, -- Like SignColumn when 'cursorline' is set for the cursor line
+    -- MatchParen     {fg=undecided.darken(50), bg=undecided}, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    -- ModeMsg        {fg=undecided.darken(50), bg=undecided}, -- 'showmode' message (e.g., "-- INSERT -- ")
+    -- MsgSeparator   {fg=undecided.darken(50), bg=undecided}, -- Separator for scrolled messages, `msgsep` flag of 'display'
+    -- MoreMsg        {fg=undecided.darken(50), bg=undecided}, -- |more-prompt|
+    -- NonText        {fg=undecided.darken(50), bg=undecided}, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    -- NormalFloat    {fg=undecided.darken(50), bg=undecided}, -- Normal text in floating windows.
+    -- FloatBorder    {fg=undecided.darken(50), bg=undecided}, -- Border of floating windows.
+    -- FloatTitle     {fg=undecided.darken(50), bg=undecided}, -- Title of floating windows.
+    -- NormalNC       {fg=undecided.darken(50), bg=undecided}, -- normal text in non-current windows
+    -- Pmenu          {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item.
+    -- PmenuSel       {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item.
+    -- PmenuKind      {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item "kind"
+    -- PmenuKindSel   {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item "kind"
+    -- PmenuExtra     {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item "extra text"
+    -- PmenuExtraSel  {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item "extra text"
+    -- PmenuSbar      {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Scrollbar.
+    -- PmenuThumb     {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Thumb of the scrollbar.
+    -- Question       {fg=undecided.darken(50), bg=undecided}, -- |hit-enter| prompt and yes/no questions
+    -- QuickFixLine   {fg=undecided.darken(50), bg=undecided}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+    -- SpecialKey     {fg=undecided.darken(50), bg=undecided}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+    -- SpellBad       {fg=undecided.darken(50), bg=undecided}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+    -- SpellCap       {fg=undecided.darken(50), bg=undecided}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+    -- SpellLocal     {fg=undecided.darken(50), bg=undecided}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+    -- SpellRare      {fg=undecided.darken(50), bg=undecided}, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
+    -- StatusLineNC   {fg=undecided.darken(50), bg=undecided}, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    -- TabLine        {fg=undecided.darken(50), bg=undecided}, -- Tab pages line, not active tab page label
+    -- TabLineFill    {fg=undecided.darken(50), bg=undecided}, -- Tab pages line, where there are no labels
+    -- TabLineSel     {fg=undecided.darken(50), bg=undecided}, -- Tab pages line, active tab page label
+    -- Title          {fg=undecided.darken(50), bg=undecided}, -- Titles for output from ":set all", ":autocmd" etc.
+    -- VisualNOS      {fg=undecided.darken(50), bg=undecided}, -- Visual mode selection when vim is "Not Owning the Selection".
+    -- WarningMsg     {fg=undecided.darken(50), bg=undecided}, -- Warning messages
+    -- Whitespace     {fg=undecided.darken(50), bg=undecided}, -- "nbsp", "space", "tab" and "trail" in 'listchars'
+    -- Winseparator   {fg=undecided.darken(50), bg=undecided}, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+    -- WildMenu       {fg=undecided.darken(50), bg=undecided}, -- Current match in 'wildmenu' completion
+    -- WinBar         {fg=undecided.darken(50), bg=undecided}, -- Window bar of current window
+    -- WinBarNC       {fg=undecided.darken(50), bg=undecided}, -- Window bar of not-current windows
 
     -- Common vim syntax groups used for all kinds of code and markup.
     -- Commented-out groups should chain up to their preferred (*) group
@@ -123,7 +128,7 @@ local theme = lush(function(injected_functions)
     --
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    -- Comment        { }, -- Any comment
+    Comment        {fg=green_wire}, -- Any comment
 
     -- Constant       { }, -- (*) Any constant
     -- String         { }, --   A string constant: "this is a string"
