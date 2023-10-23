@@ -25,7 +25,7 @@ local yellow_wire = hsl("#f8dc75")
 local blue_wire = hsl("#5e7eb5")
 local orange_wire = hsl("#fc9a1a")
 local pink_wire = hsl("#bd236c")
-local purple_wire = hsl("#581458")
+local purple_wire = hsl("#92398e")
 -------------------------------------
 
 ----------------- other -------------
@@ -130,17 +130,17 @@ local theme = lush(function(injected_functions)
 
     Comment        {fg=green_wire}, -- Any comment
 
-    -- Constant       { }, -- (*) Any constant
+    Constant       {fg=green_wire}, -- (*) Any constant
     -- String         { }, --   A string constant: "this is a string"
     -- Character      { }, --   A character constant: 'c', '\n'
     -- Number         { }, --   A number constant: 234, 0xff
     -- Boolean        { }, --   A boolean constant: TRUE, false
     -- Float          { }, --   A floating point constant: 2.3e10
 
-    -- Identifier     { }, -- (*) Any variable name
+    Identifier     {fg=blue_wire}, -- (*) Any variable name
     -- Function       { }, --   Function name (also: methods for classes)
 
-    -- Statement      { }, -- (*) Any statement
+    Statement      {fg=yellow_wire}, -- (*) Any statement
     -- Conditional    { }, --   if, then, else, endif, switch, etc.
     -- Repeat         { }, --   for, do, while, etc.
     -- Label          { }, --   case, default, etc.
@@ -148,23 +148,23 @@ local theme = lush(function(injected_functions)
     -- Keyword        { }, --   any other keyword
     -- Exception      { }, --   try, catch, throw
 
-    -- PreProc        { }, -- (*) Generic Preprocessor
+    PreProc        {fg=blue_wire}, -- (*) Generic Preprocessor
     -- Include        { }, --   Preprocessor #include
     -- Define         { }, --   Preprocessor #define
     -- Macro          { }, --   Same as Define
     -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-    -- Type           { }, -- (*) int, long, char, etc.
+    Type           {fg=blue_wire}, -- (*) int, long, char, etc.
     -- StorageClass   { }, --   static, register, volatile, etc.
     -- Structure      { }, --   struct, union, enum, etc.
     -- Typedef        { }, --   A typedef
 
-    -- Special        { }, -- (*) Any special symbol
-    -- SpecialChar    { }, --   Special character in a constant
-    -- Tag            { }, --   You can use CTRL-] on this
-    -- Delimiter      { }, --   Character that needs attention
-    -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
-    -- Debug          { }, --   Debugging statements
+    Special        {fg=blue_wire}, -- (*) Any special symbol
+    SpecialChar    {fg=undecided}, --   Special character in a constant
+    Tag            {fg=undecided}, --   You can use CTRL-] on this
+    Delimiter      {fg=red_wire}, --   Character that needs attention
+    SpecialComment {fg=undecided}, --   Special things inside a comment (e.g. '\n')
+    Debug          {fg=undecided}, --   Debugging statements
 
     -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
     -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
