@@ -17,20 +17,27 @@ local lush = require("lush")
 local hsl = lush.hsl
 
 -------- akira color palette --------
-
+hsl("#d76300") hsl("#1f1f38") hsl("#150208") hsl("#050b1e") hsl("#900001") hsl("#feb89b") hsl("#590003") hsl("#14293f") hsl("#490511") hsl("#490006")
+hsl("#c7001f") hsl("#313c5b") hsl("#41090f") hsl("#061748") hsl("#4c0003") hsl("#fc9a1a") hsl("#af0004") hsl("#03385f") hsl("#b90101") hsl("#840b11")
+hsl("#1f1f39") hsl("#336570") hsl("#940000") hsl("#2c4e69") hsl("#1d1622") hsl("#b20e00") hsl("#be236c") hsl("#769992") hsl("#866147") hsl("#d60000")
+hsl("#263559") hsl("#306e60") hsl("#9087ac") hsl("#5d4058") hsl("#242645") hsl("#840000") hsl("#950040") hsl("#9cc2b8") hsl("#d5b484") hsl("#f9fd2f")
+hsl("#406c91") hsl("#578d39") hsl("#655b87") hsl("#561634") hsl("#244672") hsl("#660009") hsl("#581458") hsl("#bec8c7") hsl("#c5b063") hsl("#a7938e")
+hsl("#6c9fa7") hsl("#5e9058") hsl("#273154") hsl("#450d0c") hsl("#316890") hsl("#43062d") hsl("#3a093b") hsl("#da7bad") hsl("#effffe") hsl("#9aa4ca")
+hsl("#a4759b") hsl("#70a16f") hsl("#173132") hsl("#a42903") hsl("#3e7c93") hsl("#2d1747") hsl("#1c041c") hsl("#c15890") hsl("#a1caae") hsl("#5e7eb5")
+hsl("#4f3970") hsl("#84b38f") hsl("#1b5956") hsl("#fe0000") hsl("#4a90b3") hsl("#191a41") hsl("#071222") hsl("#92388e") hsl("#79a29e") hsl("#406775")
+hsl("#1a3f2e") hsl("#b3e3f2") hsl("#79a06a") hsl("#d26b00") hsl("#7d6874") hsl("#0f0a2b") hsl("#4a5662") hsl("#c70e26") hsl("#527a81") hsl("#608e6e")
+hsl("#489665") hsl("#890005") hsl("#6cbc9b") hsl("#bba12a") hsl("#4f3641") hsl("#170126") hsl("#6a8ca9") hsl("#ca5c26") hsl("#39434d") hsl("#6b7850")
 --------------- wires ---------------
 local lime_wire = hsl("#6be28d")
 local red_wire = hsl("#ff2e2e")
 local yellow_wire = hsl("#f8dc75")
-local blue_wire = hsl("#9ba6f8")
+local blue_wire = hsl("#5e7eb5")
+local cyan_wire = hsl("#b3e3f2")
 local green_wire = hsl("#608e6e")
-local purple_wire = hsl("#af6df9")
--------------------------------------
-
 ----------------- other -------------
-local undecided = hsl("#00bfff")
-local foreground = hsl("#8982AB")
-local background = hsl("#262335")
+local foreground = hsl("#9aa4ca")
+local background = hsl("#1f1f39")
+local undecided = hsl("#ca5c26")
 -------------------------------------
 
 local theme = lush(function(injected_functions)
@@ -76,12 +83,11 @@ local theme = lush(function(injected_functions)
 		-- EndOfBuffer    {fg=undecided.darken(50), bg=undecided}, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
 		-- ErrorMsg       {fg=undecided.darken(50), bg=undecided}, -- Error messages on the command line
 		-- VertSplit      {fg=undecided.darken(50), bg=undecided}, -- Column separating vertically split windows
-		-- Folded         {fg=undecided.darken(50), bg=undecided}, -- Line used for closed folds
-		-- FoldColumn     {fg=undecided.darken(50), bg=undecided}, -- 'foldcolumn'
+		-- Folded         {fg=undecided.darken(50), bg=undecided}, -- Line used for closed folds FoldColumn     {fg=undecided.darken(50), bg=undecided}, -- 'foldcolumn'
 		-- IncSearch      {fg=undecided.darken(50), bg=undecided}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		-- Substitute     {fg=undecided.darken(50), bg=undecided}, -- |:substitute| replacement text highlighting
-		-- CursorLineFold {fg=undecided.darken(50), bg=undecided}, -- Like FoldColumn when 'cursorline' is set for the cursor line
-		-- CursorLineSign {fg=undecided.darken(50), bg=undecided}, -- Like SignColumn when 'cursorline' is set for the cursor line
+		CursorLineFold {}, -- Like FoldColumn when 'cursorline' is set for the cursor line
+		CursorLineSign {}, -- Like SignColumn when 'cursorline' is set for the cursor line
 		-- MatchParen     {fg=undecided.darken(50), bg=undecided}, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		-- ModeMsg        {fg=undecided.darken(50), bg=undecided}, -- 'showmode' message (e.g., "-- INSERT -- ")
 		-- MsgSeparator   {fg=undecided.darken(50), bg=undecided}, -- Separator for scrolled messages, `msgsep` flag of 'display'
@@ -91,14 +97,14 @@ local theme = lush(function(injected_functions)
 		-- FloatBorder    {fg=undecided.darken(50), bg=undecided}, -- Border of floating windows.
 		-- FloatTitle     {fg=undecided.darken(50), bg=undecided}, -- Title of floating windows.
 		-- NormalNC       {fg=undecided.darken(50), bg=undecided}, -- normal text in non-current windows
-		-- Pmenu          {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item.
-		-- PmenuSel       {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item.
-		-- PmenuKind      {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item "kind"
-		-- PmenuKindSel   {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item "kind"
-		-- PmenuExtra     {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item "extra text"
-		-- PmenuExtraSel  {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item "extra text"
-		-- PmenuSbar      {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Scrollbar.
-		-- PmenuThumb     {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Thumb of the scrollbar.
+		Pmenu          {fg=cyan_wire, bg=background.lighten(10)}, -- Popup menu: Normal item.
+		PmenuSel       {fg=background.lighten(10), bg=cyan_wire}, -- Popup menu: Selected item.
+		PmenuKind      {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item "kind"
+		PmenuKindSel   {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item "kind"
+		PmenuExtra     {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Normal item "extra text"
+		PmenuExtraSel  {fg=undecided.darken(50), bg=undecided}, -- Popup menu: Selected item "extra text"
+		PmenuSbar      {bg=background}, -- Popup menu: Scrollbar.
+		PmenuThumb     {bg=blue_wire}, -- Popup menu: Thumb of the scrollbar.
 		-- Question       {fg=undecided.darken(50), bg=undecided}, -- |hit-enter| prompt and yes/no questions
 		-- QuickFixLine   {fg=undecided.darken(50), bg=undecided}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
 		-- SpecialKey     {fg=undecided.darken(50), bg=undecided}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
@@ -127,9 +133,9 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ fg = green_wire }), -- Any comment
+		Comment({ fg = foreground }), -- Any comment
 
-		Constant({ fg = blue_wire }), -- (*) Any constant
+		Constant({ fg = cyan_wire }), -- (*) Any constant
 		-- String         { }, --   A string constant: "this is a string"
 		-- Character      { }, --   A character constant: 'c', '\n'
 		-- Number         { }, --   A number constant: 234, 0xff
