@@ -29,7 +29,7 @@ hsl("#1a3f2e") hsl("#b3e3f2") hsl("#79a06a") hsl("#d26b00") hsl("#7d6874") hsl("
 hsl("#489665") hsl("#890005") hsl("#6cbc9b") hsl("#bba12a") hsl("#4f3641") hsl("#170126") hsl("#6a8ca9") hsl("#ca5c26") hsl("#39434d") hsl("#6b7850")
 --------------- wires ---------------
 local lime_wire = hsl("#6be28d")
-local red_wire = hsl("#ff2e2e")
+local red_wire = hsl("#ff6e6e")
 local yellow_wire = hsl("#f8dc75")
 local blue_wire = hsl("#5e7eb5")
 local cyan_wire = hsl("#b3e3f2")
