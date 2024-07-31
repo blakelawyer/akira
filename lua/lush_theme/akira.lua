@@ -84,7 +84,7 @@ local theme = lush(function(injected_functions)
         NeoTreeHiddenByName {fg=yellow_wire, bg=yellow_wire},
         NeoTreeCursorLine {bg=background.lighten(10)},
         NeoTreeDimText {fg=red_wire},
-        -- NeoTreeDirectoryName {fg=yellow_wire, bg=yellow_wire},
+        NeoTreeDirectoryName {fg=blue_wire},
         NeoTreeDirectoryIcon {fg=blue_wire},
         -- NeoTreeFileIcon {fg=yellow_wire, bg=yellow_wire},
         NeoTreeFileName {fg=white_wire},
