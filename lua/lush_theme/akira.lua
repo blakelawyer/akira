@@ -43,24 +43,60 @@ local theme = lush(function(injected_functions)
     -------------------------------------
     local sym = injected_functions.sym
     return {
-        sym"@operator"            {fg=foreground}, -- Operator
-        sym"@keyword"             {fg=blue_wire}, -- Keyword
-        sym"@punctuation"         {fg=red_wire}, -- Delimiter
-        sym"@punctuation.special" {fg=red_wire}, -- Delimiter
-        sym"@number"              {fg=yellow_wire}, -- Number
-        sym"@function"            {fg=green_wire}, -- Function
-        sym"@function.builtin"    {fg=green_wire}, -- Special
-        sym"@variable"            {fg=white_wire}, -- Identifier
-        sym"@string"              {fg=yellow_wire}, -- String
-        sym"@comment"             {fg=foreground, gui="italic"}, -- Comment
-        sym"@constructor"         {fg=blue_wire}, -- Special
-        sym"@type"                {fg=blue_wire}, -- Type
-        sym"@type.builtin"        {fg=green_wire}, -- Type
-        sym"@constant"            {fg=blue_wire}, -- Constant
-        sym"@constant.builtin"    {fg=blue_wire}, -- Special
-        sym"@boolean"             {fg=blue_wire}, -- Boolean  
+        sym"@operator"              {fg=foreground}, -- Operator
+        sym"@keyword"               {fg=blue_wire}, -- Keyword
+        sym"@punctuation"           {fg=red_wire}, -- Delimiter
+        sym"@punctuation.special"   {fg=red_wire}, -- Delimiter
+        sym"@number"                {fg=yellow_wire}, -- Number
+        sym"@function"              {fg=green_wire}, -- Function
+        sym"@function.builtin"      {fg=green_wire}, -- Special
+        sym"@variable"              {fg=white_wire}, -- Identifier
+        sym"@string"                {fg=yellow_wire}, -- String
+        sym"@comment"               {fg=foreground, gui="italic"}, -- Comment
+        sym"@constructor"           {fg=blue_wire}, -- Special
+        sym"@type"                  {fg=blue_wire}, -- Type
+        sym"@type.builtin"          {fg=green_wire}, -- Type
+        sym"@constant"              {fg=blue_wire}, -- Constant
+        sym"@constant.builtin"      {fg=blue_wire}, -- Special
+        sym"@boolean"               {fg=blue_wire}, -- Boolean  
+        sym"@markup.heading.1"      {fg=blue_wire, gui="bold"},
+        sym"@markup.heading.2"      {fg=blue_wire, gui="bold"},
+        sym"@spell.markdown"        {fg=white_wire},
+        sym"@markup.list"           {fg=red_wire},
+        sym"@markup.list.checked"   {fg=green_wire},
+        sym"@markup.list.unchecked" {fg=red_wire},
+        
+        NeoTreeNormal {fg=white_wire, bg=background},
+        -- NeoTreeSignColumn {fg=yellow_wire, bg=yellow_wire},
+        -- NeoTreeStatusLine {fg=yellow_wire, bg=yellow_wire},
+        -- NeoTreeStatusLineNC {fg=yellow_wire, bg=yellow_wire},
+        -- NeoTreeVertSplit {fg=yellow_wire, bg=yellow_wire},
+        NeoTreeWinSeparator {fg=white_wire},
+        NeoTreeEndOfBuffer {bg=background},
+        NeoTreeFloatBorder {fg=blue_wire, bg=background},
+        -- NeoTreeFloatTitle {fg=yellow_wire},
+        NeoTreeTitleBar {fg=blue_wire, bg=background},
+        -- NeoTreeBufferNumber {fg=yellow_wire, bg=yellow_wire},
+        -- NeoTreeMessage {fg=yellow_wire, bg=yellow_wire},
+        -- NeoTreeFadeText1 {fg=yellow_wire, bg=yellow_wire},
+        -- NeoTreeFadeText2 {fg=yellow_wire, bg=yellow_wire},
+        NeoTreeDotfile {fg=yellow_wire, bg=yellow_wire},
+        NeoTreeHiddenByName {fg=yellow_wire, bg=yellow_wire},
+        NeoTreeCursorLine {bg=background.lighten(10)},
+        NeoTreeDimText {fg=red_wire},
+        -- NeoTreeDirectoryName {fg=yellow_wire, bg=yellow_wire},
+        NeoTreeDirectoryIcon {fg=blue_wire},
+        -- NeoTreeFileIcon {fg=yellow_wire, bg=yellow_wire},
+        NeoTreeFileName {fg=white_wire},
+        NeoTreeGitUntracked {fg=blue_wire},
+        NeoTreeGitUnstaged {fg=blue_wire},
+        NeoTreeGitModified {fg=yellow_wire},
+        -- NeoTreeNameOpened {fg=yellow_wire, bg=yellow_wire},
+        -- NeoTreeSymbolicLinkTarget {fg=yellow_wire, bg=yellow_wire},
+        
         
         Normal         {bg=background, fg=foreground}, -- Normal text
+        NormalNC         {bg=background, fg=foreground}, -- Normal text
         IblIndent         {fg=red_wire}, -- indent-blankline 
         EndOfBuffer    {fg=foreground, bg=background}, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
         
@@ -82,9 +118,10 @@ local theme = lush(function(injected_functions)
         Pmenu          {fg=white_wire}, -- Popup menu: Normal item.
         Visual         {fg=background, bg=foreground, gui="bold"}, -- Visual mode selection
         Float          {fg=yellow_wire}, --   A floating point constant: 2.3e10
+        String         {fg=green_wire}, --   A string constant: "this is a string"
+        Special        {fg=yellow_wire}, -- (*) Any special symbol
 
         Constant       {fg=undecided_fg}, -- (*) Any constant
-        String         {fg=undecided_fg}, --   A string constant: "this is a string"
         Character      {fg=undecided_fg}, --   A character constant: 'c', '\n'
         Number         {fg=undecided_fg}, --   A number constant: 234, 0xff
         Boolean        {fg=undecided_fg}, --   A boolean constant: TRUE, false
@@ -111,65 +148,64 @@ local theme = lush(function(injected_functions)
         Structure      {fg=undecided_fg}, --   struct, union, enum, etc.
         Typedef        {fg=undecided_fg}, --   A typedef
 
-        Special        {fg=undecided_fg}, -- (*) Any special symbol
         SpecialChar    {fg=undecided_fg}, --   Special character in a constant
         Tag            {fg=undecided_fg, gui="bold"}, --   You can use CTRL-] on this
         Delimiter      {fg=undecided_fg}, --   Character that needs attention
         SpecialComment {fg=undecided_fg}, --   Special things inside a comment (e.g. '\n')
         Debug          {fg=undecided_fg}, --   Debugging statements
 
-        ColorColumn    {fg=undecided_fg, bg=undecided_bg}, -- Columns set with 'colorcolumn'
-        Conceal        {fg=undecided_fg, bg=undecided_bg}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-        Cursor         {fg=undecided_fg, bg=undecided_bg}, -- Character under the cursor
-        CurSearch      {fg=undecided_fg, bg=undecided_bg}, -- Highlighting a search pattern under the cursor (see 'hlsearch')
-        lCursor        {fg=undecided_fg, bg=undecided_bg}, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-        CursorIM       {fg=undecided_fg, bg=undecided_bg}, -- Like Cursor, but used when in IME mode |CursorIM|
-        CursorColumn   {fg=undecided_fg, bg=undecided_bg}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-        Directory      {fg=undecided_fg, bg=undecided_bg}, -- Directory names (and other special names in listings)
-        DiffAdd        {fg=undecided_fg, bg=undecided_bg}, -- Diff mode: Added line |diff.txt|
-        DiffChange     {fg=undecided_fg, bg=undecided_bg}, -- Diff mode: Changed line |diff.txt|
-        DiffDelete     {fg=undecided_fg, bg=undecided_bg}, -- Diff mode: Deleted line |diff.txt|
-        DiffText       {fg=undecided_fg, bg=undecided_bg}, -- Diff mode: Changed text within a changed line |diff.txt|
-        TermCursor     {gui="reverse"}, -- Cursor in a focused terminal
-        TermCursorNC   {gui="reverse"}, -- Cursor in an unfocused terminal
-        ErrorMsg       {fg=undecided_fg, bg=undecided_bg, gui="bold,italic"}, -- Error messages on the command line
-        VertSplit      {fg=undecided_fg, bg=undecided_bg}, -- Column separating vertically split windows
-        Folded         {fg=undecided_fg, bg=undecided_bg}, -- Line used for closed folds
-        FoldColumn     {fg=undecided_fg, bg=undecided_bg}, -- 'foldcolumn'
-        IncSearch      {fg=undecided_fg, bg=undecided_bg}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-        Substitute     {fg=undecided_fg, bg=undecided_bg}, -- |:substitute| replacement text highlighting
-        CursorLineFold {fg=undecided_fg, bg=undecided_bg}, -- Like FoldColumn when 'cursorline' is set for the cursor line
-        MatchParen     {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-        ModeMsg        {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- 'showmode' message (e.g., "-- INSERT -- ")
-        MsgArea        {fg=undecided_fg, bg=undecided_bg}, -- Area for messages and cmdline
-        MsgSeparator   {fg=undecided_fg, bg=undecided_bg}, -- Separator for scrolled messages, `msgsep` flag of 'display'
-        MoreMsg        {fg=undecided_fg, bg=undecided_bg}, -- |more-prompt|
-        FloatTitle     {fg=undecided_fg, bg=undecided_bg}, -- Title of floating windows.
-        NormalNC       {fg=undecided_fg, bg=undecided_bg}, -- normal text in non-current windows
-        Question       {fg=undecided_fg, bg=undecided_bg}, -- |hit-enter| prompt and yes/no questions
-        QuickFixLine   {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-        SpecialKey     {fg=undecided_fg, bg=undecided_bg}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-        StatusLineNC   {fg=undecided_fg, bg=undecided_bg}, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-        TabLine        {fg=undecided_fg, bg=undecided_bg}, -- Tab pages line, not active tab page label
-        TabLineFill    {fg=undecided_fg, bg=undecided_bg}, -- Tab pages line, where there are no labels
-        TabLineSel     {fg=undecided_fg, bg=undecided_bg}, -- Tab pages line, active tab page label
-        Title          {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Titles for output from ":set all", ":autocmd" etc.
-        VisualNOS      {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Visual mode selection when vim is "Not Owning the Selection".
-        WarningMsg     {fg=undecided_fg, bg=undecided_bg}, -- Warning messages
-        Winseparator   {fg=undecided_fg, bg=undecided_bg}, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-        WildMenu       {fg=undecided_fg, bg=undecided_bg}, -- Current match in 'wildmenu' completion
-        WinBar         {fg=undecided_fg, bg=undecided_bg}, -- Window bar of current window
-        WinBarNC       {fg=undecided_fg, bg=undecided_bg}, -- Window bar of not-current windows
-        PmenuKind      {fg=undecided_fg, bg=undecided_bg}, -- Popup menu: Normal item "kind"
-        PmenuKindSel   {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Popup menu: Selected item "kind"
-        PmenuExtra     {fg=undecided_fg, bg=undecided_bg}, -- Popup menu: Normal item "extra text"
-        PmenuExtraSel  {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Popup menu: Selected item "extra text"
-        PmenuSbar      {fg=undecided_fg, bg=undecided_bg}, -- Popup menu: Scrollbar.
-        PmenuThumb     {fg=undecided_fg, bg=undecided_bg}, -- Popup menu: Thumb of the scrollbar.
-        SpellBad       {gui="undercurl", sp=undecided_fg}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-        SpellCap       {gui="undercurl", sp=undecided_fg}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-        SpellLocal     {gui="undercurl", sp=undecided_fg}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-        SpellRare      {gui="undercurl", sp=undecided_fg}, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
+        -- ColorColumn    {fg=undecided_fg, bg=undecided_bg}, -- Columns set with 'colorcolumn'
+        -- Conceal        {fg=undecided_fg, bg=undecided_bg}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+        -- Cursor         {fg=undecided_fg, bg=undecided_bg}, -- Character under the cursor
+        -- CurSearch      {fg=undecided_fg, bg=undecided_bg}, -- Highlighting a search pattern under the cursor (see 'hlsearch')
+        -- lCursor        {fg=undecided_fg, bg=undecided_bg}, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+        -- CursorIM       {fg=undecided_fg, bg=undecided_bg}, -- Like Cursor, but used when in IME mode |CursorIM|
+        -- CursorColumn   {fg=undecided_fg, bg=undecided_bg}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+        -- Directory      {fg=undecided_fg, bg=undecided_bg}, -- Directory names (and other special names in listings)
+        -- DiffAdd        {fg=undecided_fg, bg=undecided_bg}, -- Diff mode: Added line |diff.txt|
+        -- DiffChange     {fg=undecided_fg, bg=undecided_bg}, -- Diff mode: Changed line |diff.txt|
+        -- DiffDelete     {fg=undecided_fg, bg=undecided_bg}, -- Diff mode: Deleted line |diff.txt|
+        -- DiffText       {fg=undecided_fg, bg=undecided_bg}, -- Diff mode: Changed text within a changed line |diff.txt|
+        -- TermCursor     {gui="reverse"}, -- Cursor in a focused terminal
+        -- TermCursorNC   {gui="reverse"}, -- Cursor in an unfocused terminal
+        -- ErrorMsg       {fg=undecided_fg, bg=undecided_bg, gui="bold,italic"}, -- Error messages on the command line
+        -- VertSplit      {fg=undecided_fg, bg=undecided_bg}, -- Column separating vertically split windows
+        -- Folded         {fg=undecided_fg, bg=undecided_bg}, -- Line used for closed folds
+        -- FoldColumn     {fg=undecided_fg, bg=undecided_bg}, -- 'foldcolumn'
+        -- IncSearch      {fg=undecided_fg, bg=undecided_bg}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+        -- Substitute     {fg=undecided_fg, bg=undecided_bg}, -- |:substitute| replacement text highlighting
+        -- CursorLineFold {fg=undecided_fg, bg=undecided_bg}, -- Like FoldColumn when 'cursorline' is set for the cursor line
+        -- MatchParen     {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+        -- ModeMsg        {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- 'showmode' message (e.g., "-- INSERT -- ")
+        -- MsgArea        {fg=undecided_fg, bg=undecided_bg}, -- Area for messages and cmdline
+        -- MsgSeparator   {fg=undecided_fg, bg=undecided_bg}, -- Separator for scrolled messages, `msgsep` flag of 'display'
+        -- MoreMsg        {fg=undecided_fg, bg=undecided_bg}, -- |more-prompt|
+        -- FloatTitle     {fg=undecided_fg, bg=undecided_bg}, -- Title of floating windows.
+        -- NormalNC       {fg=undecided_fg, bg=undecided_bg}, -- normal text in non-current windows
+        -- Question       {fg=undecided_fg, bg=undecided_bg}, -- |hit-enter| prompt and yes/no questions
+        -- QuickFixLine   {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+        -- SpecialKey     {fg=undecided_fg, bg=undecided_bg}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+        -- StatusLineNC   {fg=undecided_fg, bg=undecided_bg}, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+        -- TabLine        {fg=undecided_fg, bg=undecided_bg}, -- Tab pages line, not active tab page label
+        -- TabLineFill    {fg=undecided_fg, bg=undecided_bg}, -- Tab pages line, where there are no labels
+        -- TabLineSel     {fg=undecided_fg, bg=undecided_bg}, -- Tab pages line, active tab page label
+        -- Title          {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Titles for output from ":set all", ":autocmd" etc.
+        -- VisualNOS      {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Visual mode selection when vim is "Not Owning the Selection".
+        -- WarningMsg     {fg=undecided_fg, bg=undecided_bg}, -- Warning messages
+        -- Winseparator   {fg=undecided_fg, bg=undecided_bg}, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+        -- WildMenu       {fg=undecided_fg, bg=undecided_bg}, -- Current match in 'wildmenu' completion
+        -- WinBar         {fg=undecided_fg, bg=undecided_bg}, -- Window bar of current window
+        -- WinBarNC       {fg=undecided_fg, bg=undecided_bg}, -- Window bar of not-current windows
+        -- PmenuKind      {fg=undecided_fg, bg=undecided_bg}, -- Popup menu: Normal item "kind"
+        -- PmenuKindSel   {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Popup menu: Selected item "kind"
+        -- PmenuExtra     {fg=undecided_fg, bg=undecided_bg}, -- Popup menu: Normal item "extra text"
+        -- PmenuExtraSel  {fg=undecided_fg, bg=undecided_bg, gui="bold"}, -- Popup menu: Selected item "extra text"
+        -- PmenuSbar      {fg=undecided_fg, bg=undecided_bg}, -- Popup menu: Scrollbar.
+        -- PmenuThumb     {fg=undecided_fg, bg=undecided_bg}, -- Popup menu: Thumb of the scrollbar.
+        -- SpellBad       {gui="undercurl", sp=undecided_fg}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+        -- SpellCap       {gui="undercurl", sp=undecided_fg}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+        -- SpellLocal     {gui="undercurl", sp=undecided_fg}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+        -- SpellRare      {gui="undercurl", sp=undecided_fg}, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
         sym"@text.literal"      {fg=undecided_fg}, -- Comment
         sym"@text.reference"    {fg=undecided_fg, gui="bold"}, -- Identifier
         sym"@text.title"        {fg=undecided_fg, gui="bold"}, -- Title
@@ -201,41 +237,41 @@ local theme = lush(function(injected_functions)
         sym"@preproc"           {fg=undecided_fg}, -- PreProc
         sym"@debug"             {fg=undecided_fg}, -- Debug
         sym"@tag"               {fg=undecided_fg}, -- Tag
-        Underlined     { gui = "underline" }, -- Text that stands out, HTML links
-        Ignore         {fg=undecided_fg, bg=undecided_bg}, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-        Error          {fg=undecided_fg}, -- Any erroneous construct
-        Todo           {fg=undecided_fg, gui="bold"}, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-        LspReferenceText            {bg=undecided_bg}, -- Used for highlighting "text" references
-        LspReferenceRead            {bg=undecided_bg}, -- Used for highlighting "read" references
-        LspReferenceWrite           {bg=undecided_bg}, -- Used for highlighting "write" references
-        LspCodeLens                 {fg=undecided_fg}, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
-        LspCodeLensSeparator        {fg=undecided_fg}, -- Used to color the seperator between two or more code lens.
-        LspSignatureActiveParameter {fg=undecided_fg}, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
-        DiagnosticError            {fg=red_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticVirtualTextError {fg=red_wire, gui="italic"}, -- Used for "Error" diagnostic virtual text.
-        DiagnosticUnderlineError   {fg=red_wire, gui="italic"}, -- Used to underline "Error" diagnostics.
-        DiagnosticFloatingError    {fg=red_wire, gui="italic"}, -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
-        DiagnosticSignError        {fg=red_wire, gui="italic"}, -- Used for "Error" signs in sign column.
-        DiagnosticWarn             {fg=yellow_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticVirtualTextWarn  {fg=yellow_wire, gui="italic"}, -- Used for "Warn" diagnostic virtual text.
-        DiagnosticFloatingWarn     {fg=yellow_wire, gui="italic"}, -- Used to color "Warn" diagnostic messages in diagnostics float.
-        DiagnosticSignWarn         {fg=yellow_wire, gui="italic"}, -- Used for "Warn" signs in sign column.
-        DiagnosticUnderlineWarn    {fg=yellow_wire, gui="italic"}, -- Used to underline "Warn" diagnostics.
-        DiagnosticInfo             {fg=blue_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticVirtualTextInfo  {fg=blue_wire, gui="italic"}, -- Used for "Info" diagnostic virtual text.
-        DiagnosticUnderlineInfo    {fg=blue_wire, gui="italic"}, -- Used to underline "Info" diagnostics.
-        DiagnosticFloatingInfo     {fg=blue_wire, gui="italic"}, -- Used to color "Info" diagnostic messages in diagnostics float.
-        DiagnosticSignInfo         {fg=blue_wire, gui="italic"}, -- Used for "Info" signs in sign column.
-        DiagnosticHint             {fg=blue_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticVirtualTextHint  {fg=blue_wire, gui="italic"}, -- Used for "Hint" diagnostic virtual text.
-        DiagnosticUnderlineHint    {fg=blue_wire, gui="italic"}, -- Used to underline "Hint" diagnostics.
-        DiagnosticFloatingHint     {fg=blue_wire, gui="italic"}, -- Used to color "Hint" diagnostic messages in diagnostics float.
-        DiagnosticSignHint         {fg=blue_wire, gui="italic"}, -- Used for "Hint" signs in sign column.
-        DiagnosticOk               {fg=green_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticVirtualTextOk    {fg=green_wire, gui="italic"}, -- Used for "Ok" diagnostic virtual text.
-        DiagnosticUnderlineOk      {fg=green_wire, gui="italic"}, -- Used to underline "Ok" diagnostics.
-        DiagnosticFloatingOk       {fg=green_wire, gui="italic"}, -- Used to color "Ok" diagnostic messages in diagnostics float.
-        DiagnosticSignOk           {fg=green_wire, gui="italic"}, -- Used for "Ok" signs in sign column.
+        -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
+        -- Ignore         {fg=undecided_fg, bg=undecided_bg}, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
+        -- Error          {fg=undecided_fg}, -- Any erroneous construct
+        -- Todo           {fg=undecided_fg, gui="bold"}, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+        -- LspReferenceText            {bg=undecided_bg}, -- Used for highlighting "text" references
+        -- LspReferenceRead            {bg=undecided_bg}, -- Used for highlighting "read" references
+        -- LspReferenceWrite           {bg=undecided_bg}, -- Used for highlighting "write" references
+        -- LspCodeLens                 {fg=undecided_fg}, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
+        -- LspCodeLensSeparator        {fg=undecided_fg}, -- Used to color the seperator between two or more code lens.
+        -- LspSignatureActiveParameter {fg=undecided_fg}, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
+        -- DiagnosticError            {fg=red_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        -- DiagnosticVirtualTextError {fg=red_wire, gui="italic"}, -- Used for "Error" diagnostic virtual text.
+        -- DiagnosticUnderlineError   {fg=red_wire, gui="italic"}, -- Used to underline "Error" diagnostics.
+        -- DiagnosticFloatingError    {fg=red_wire, gui="italic"}, -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
+        -- DiagnosticSignError        {fg=red_wire, gui="italic"}, -- Used for "Error" signs in sign column.
+        -- DiagnosticWarn             {fg=yellow_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        -- DiagnosticVirtualTextWarn  {fg=yellow_wire, gui="italic"}, -- Used for "Warn" diagnostic virtual text.
+        -- DiagnosticFloatingWarn     {fg=yellow_wire, gui="italic"}, -- Used to color "Warn" diagnostic messages in diagnostics float.
+        -- DiagnosticSignWarn         {fg=yellow_wire, gui="italic"}, -- Used for "Warn" signs in sign column.
+        -- DiagnosticUnderlineWarn    {fg=yellow_wire, gui="italic"}, -- Used to underline "Warn" diagnostics.
+        -- DiagnosticInfo             {fg=blue_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        -- DiagnosticVirtualTextInfo  {fg=blue_wire, gui="italic"}, -- Used for "Info" diagnostic virtual text.
+        -- DiagnosticUnderlineInfo    {fg=blue_wire, gui="italic"}, -- Used to underline "Info" diagnostics.
+        -- DiagnosticFloatingInfo     {fg=blue_wire, gui="italic"}, -- Used to color "Info" diagnostic messages in diagnostics float.
+        -- DiagnosticSignInfo         {fg=blue_wire, gui="italic"}, -- Used for "Info" signs in sign column.
+        -- DiagnosticHint             {fg=blue_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        -- DiagnosticVirtualTextHint  {fg=blue_wire, gui="italic"}, -- Used for "Hint" diagnostic virtual text.
+        -- DiagnosticUnderlineHint    {fg=blue_wire, gui="italic"}, -- Used to underline "Hint" diagnostics.
+        -- DiagnosticFloatingHint     {fg=blue_wire, gui="italic"}, -- Used to color "Hint" diagnostic messages in diagnostics float.
+        -- DiagnosticSignHint         {fg=blue_wire, gui="italic"}, -- Used for "Hint" signs in sign column.
+        -- DiagnosticOk               {fg=green_wire, gui="italic"}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        -- DiagnosticVirtualTextOk    {fg=green_wire, gui="italic"}, -- Used for "Ok" diagnostic virtual text.
+        -- DiagnosticUnderlineOk      {fg=green_wire, gui="italic"}, -- Used to underline "Ok" diagnostics.
+        -- DiagnosticFloatingOk       {fg=green_wire, gui="italic"}, -- Used to color "Ok" diagnostic messages in diagnostics float.
+        -- DiagnosticSignOk           {fg=green_wire, gui="italic"}, -- Used for "Ok" signs in sign column.
     }
 end)
 
