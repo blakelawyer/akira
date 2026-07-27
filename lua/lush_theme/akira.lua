@@ -500,6 +500,22 @@ local theme = lush(function(injected_functions)
         SnacksNotifierTrace {fg=foreground},  SnacksNotifierBorderTrace {fg=foreground},
         SnacksNotifierHistoryTitle {fg=blue_wire, gui="bold"},
 
+        -- The dashboard's own groups are `default = true` links onto Special,
+        -- Number, Title and NonText. Nothing breaks without these, but Special
+        -- and Number are both yellow_wire here, so the whole start screen comes
+        -- out one colour. Set them explicitly instead.
+        SnacksDashboardHeader  {fg=red_wire},
+        SnacksDashboardIcon    {fg=blue_wire},
+        SnacksDashboardKey     {fg=red_wire},
+        SnacksDashboardDesc    {fg=foreground},
+        SnacksDashboardFile    {fg=white_wire},
+        SnacksDashboardDir     {fg=background.lighten(28)},
+        SnacksDashboardTitle   {fg=blue_wire, gui="bold"},
+        SnacksDashboardFooter  {fg=background.lighten(28)},
+        SnacksDashboardSpecial {fg=yellow_wire},
+        SnacksDashboardNormal  {fg=foreground, bg=background},
+        SnacksDashboardTerminal {fg=foreground, bg=background},
+
         SnacksStatusColumnMark {fg=yellow_wire},
         SnacksWinSeparator     {fg=background.lighten(25)},
         SnacksBackdrop         {bg=background.darken(60)},
