@@ -506,12 +506,17 @@ local theme = lush(function(injected_functions)
         -- out one colour. Set them explicitly instead.
         SnacksDashboardHeader  {fg=red_wire},
         SnacksDashboardIcon    {fg=blue_wire},
-        SnacksDashboardKey     {fg=red_wire},
+        -- yellow, not red: red is the banner, and matching them left the key
+        -- letters with nothing to distinguish them from it.
+        SnacksDashboardKey     {fg=yellow_wire},
         SnacksDashboardDesc    {fg=foreground},
         SnacksDashboardFile    {fg=white_wire},
         SnacksDashboardDir     {fg=background.lighten(28)},
         SnacksDashboardTitle   {fg=blue_wire, gui="bold"},
-        SnacksDashboardFooter  {fg=background.lighten(28)},
+        -- background.lighten(28) is fine for a de-emphasised path prefix next to
+        -- a bright filename, but the startup line is the only text on its row --
+        -- at 1.93:1 against the background it was effectively unreadable.
+        SnacksDashboardFooter  {fg=foreground},
         SnacksDashboardSpecial {fg=yellow_wire},
         SnacksDashboardNormal  {fg=foreground, bg=background},
         SnacksDashboardTerminal {fg=foreground, bg=background},
