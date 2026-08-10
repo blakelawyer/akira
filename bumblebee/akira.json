@@ -1,0 +1,14 @@
+{
+	"_generated": "by export.lua in the akira repo -- do not edit by hand",
+	"icons": [ "awesome-fonts" ],
+	"defaults": {
+		"separator-block-width": 0
+	},
+	"cycle": [
+		{"fg": "#1e1e38", "bg": "#b5e4f2"},
+		{"fg": "#1e1e38", "bg": "#ff7070"},
+		{"fg": "#1e1e38", "bg": "#6ae28c"},
+		{"fg": "#1e1e38", "bg": "#fbdea7"},
+		{"fg": "#1e1e38", "bg": "#9ba5ca"}
+	]
+}
