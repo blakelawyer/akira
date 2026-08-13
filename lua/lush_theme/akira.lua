@@ -380,6 +380,11 @@ local theme = lush(function(injected_functions)
 
         ----------------------- floats, popups, window chrome ----------------------
         FloatTitle   {fg=blue_wire, bg=background.darken(15), gui="bold"},
+        -- Stock leaves these at #4f5258, the one grey neovim ships that nothing
+        -- else in the theme touches. A float's shadow should read as more of the
+        -- background, not as a new colour.
+        FloatShadow        {bg=background.darken(60)},
+        FloatShadowThrough {bg=background.darken(60)},
         FloatFooter  {fg=foreground, bg=background.darken(15)},
 
         -- blink.cmp renders through the Pmenu* family
@@ -436,6 +441,36 @@ local theme = lush(function(injected_functions)
         GitSignsChangeInline {bg=yellow_wire.darken(55)},
         GitSignsDeleteVirtLn {fg=red_wire, bg=red_wire.darken(80)},
         GitSignsVirtLnum     {fg=background.lighten(25)},
+
+        -- gitsigns derives its staged variants by desaturating whatever the
+        -- unstaged ones resolved to, which produced #357146 / #7d6f53 / #7f3838 --
+        -- three colours that are in no palette, akira's included. It skips any
+        -- group the colorscheme already set, so declaring them here is what stops
+        -- the derivation. The consequence is deliberate and was decided in #6:
+        -- staged and unstaged now render identically, and the sign character is
+        -- the only thing left distinguishing them.
+        GitSignsStagedAdd    {fg=green_wire},
+        GitSignsStagedAddNr  {fg=green_wire},
+        GitSignsStagedAddCul {fg=green_wire},
+        GitSignsStagedAddLn  {bg=green_wire.darken(70)},
+        GitSignsStagedChange    {fg=yellow_wire},
+        GitSignsStagedChangeNr  {fg=yellow_wire},
+        GitSignsStagedChangeCul {fg=yellow_wire},
+        GitSignsStagedChangeLn  {bg=yellow_wire.darken(75)},
+        GitSignsStagedChangedelete    {fg=yellow_wire},
+        GitSignsStagedChangedeleteNr  {fg=yellow_wire},
+        GitSignsStagedChangedeleteCul {fg=yellow_wire},
+        GitSignsStagedChangedeleteLn  {bg=yellow_wire.darken(75)},
+        GitSignsStagedDelete    {fg=red_wire},
+        GitSignsStagedDeleteNr  {fg=red_wire},
+        GitSignsStagedDeleteCul {fg=red_wire},
+        GitSignsStagedTopdelete    {fg=red_wire},
+        GitSignsStagedTopdeleteNr  {fg=red_wire},
+        GitSignsStagedTopdeleteCul {fg=red_wire},
+        GitSignsStagedUntracked    {fg=green_wire},
+        GitSignsStagedUntrackedNr  {fg=green_wire},
+        GitSignsStagedUntrackedCul {fg=green_wire},
+        GitSignsStagedUntrackedLn  {bg=green_wire.darken(70)},
 
         --------------------------------- blink.cmp --------------------------------
         -- BlinkCmpLabel and BlinkCmpLabelMatch are left undefined by blink unless
@@ -524,6 +559,44 @@ local theme = lush(function(injected_functions)
         SnacksStatusColumnMark {fg=yellow_wire},
         SnacksWinSeparator     {fg=background.lighten(25)},
         SnacksBackdrop         {bg=background.darken(60)},
+
+        --------------------------------- neotest ----------------------------------
+        -- neotest ships its own palette as `hi default`, so these win outright and
+        -- its ColorScheme hook is a no-op afterwards. NeotestTest, NeotestUnknown
+        -- and NeotestFocused are left alone: the first two are `default link Normal`
+        -- and the third carries no colour at all.
+        NeotestPassed  {fg=green_wire},
+        NeotestFailed  {fg=red_wire},
+        NeotestRunning {fg=yellow_wire},
+        NeotestWatching{fg=yellow_wire},
+        NeotestSkipped {fg=foreground},
+        NeotestNamespace {fg=blue_wire},
+        NeotestFile      {fg=white_wire},
+        NeotestDir       {fg=blue_wire},
+        NeotestIndent       {fg=background.lighten(25)},
+        NeotestExpandMarker {fg=background.lighten(25)},
+        NeotestAdapterName  {fg=red_wire},
+        NeotestWinSelect    {fg=blue_wire, gui="bold"},
+        NeotestMarked       {fg=yellow_wire, gui="bold"},
+        NeotestTarget       {fg=red_wire},
+        NeotestBorder       {fg=blue_wire},
+
+        -------------------------------- obsidian.nvim -----------------------------
+        -- Unlike every other plugin themed here, obsidian sets these with a plain
+        -- nvim_set_hl from its workspace setup, which runs after the colorscheme.
+        -- Defining them is therefore not enough on its own -- colors/akira.lua
+        -- re-applies the theme on obsidian's own workspace event to win the race.
+        ObsidianTodo       {fg=yellow_wire, gui="bold"},
+        ObsidianDone       {fg=green_wire, gui="bold"},
+        ObsidianRightArrow {fg=yellow_wire, gui="bold"},
+        ObsidianTilde      {fg=red_wire, gui="bold"},
+        ObsidianImportant  {fg=red_wire, gui="bold"},
+        ObsidianBullet     {fg=blue_wire, gui="bold"},
+        ObsidianRefText    {fg=blue_wire, gui="underline"},
+        ObsidianExtLinkIcon{fg=blue_wire},
+        ObsidianTag        {fg=blue_wire, gui="italic"},
+        ObsidianBlockID    {fg=foreground, gui="italic"},
+        ObsidianHighlightText {bg=yellow_wire.darken(55)},
     }
 end)
 

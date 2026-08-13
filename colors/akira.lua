@@ -19,6 +19,27 @@ package.loaded['lush_theme.akira'] = nil
 -- include our theme file and pass it to lush to apply
 require('lush')(require('lush_theme.akira'))
 
+-- obsidian.nvim installs its Material-palette highlights with a plain
+-- nvim_set_hl -- no `default`, no ColorScheme hook -- from Workspace.set, which
+-- runs when a vault buffer is first entered. That is after this file, so the
+-- theme's Obsidian* groups get overwritten the moment the vault is opened.
+-- Re-applying the whole spec on obsidian's own event is what takes them back,
+-- and re-applying rather than restating the eleven groups keeps the theme file
+-- the only place their values live.
+--
+-- (Whether obsidian sets them at all is itself a race: it skips its UI when it
+-- finds render-markdown.nvim on the runtimepath, and under lazy that depends on
+-- which of the two markdown plugins loaded first. This fires either way.)
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'ObsidianWorkpspaceSet', -- sic: the typo is obsidian.nvim's
+    group = vim.api.nvim_create_augroup('akira_obsidian', { clear = true }),
+    callback = function()
+        if vim.g.colors_name == 'akira' then
+            require('lush')(require('lush_theme.akira'))
+        end
+    end,
+})
+
 -- Terminal palette.
 --
 -- Highlight groups don't reach inside a :terminal buffer -- ANSI output is
