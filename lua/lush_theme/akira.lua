@@ -272,7 +272,7 @@ local theme = lush(function(injected_functions)
         sym"@comment.warning"     {fg=yellow_wire, gui="bold"},
         sym"@comment.error"       {fg=red_wire, gui="bold"},
 
-        -- Markup. The journal and the obsidian vault are markdown, so these matter.
+        -- Markup. ~/vault is plain markdown, so these matter.
         sym"@markup.heading.3"    {fg=blue_wire, gui="bold"},
         sym"@markup.heading.4"    {fg=blue_wire, gui="bold"},
         sym"@markup.heading.5"    {fg=blue_wire, gui="bold"},
@@ -288,6 +288,39 @@ local theme = lush(function(injected_functions)
         sym"@markup.raw.block"    {fg=yellow_wire},
         sym"@markup.quote"        {fg=foreground, gui="italic"},
         sym"@markup.math"         {fg=yellow_wire},
+
+        -- render-markdown.nvim. It links its groups to language-suffixed
+        -- captures like @markup.heading.1.markdown, which nothing defines --
+        -- highlight links do not fall back the way treesitter captures do, so
+        -- headings rendered with no colour at all. Its heading backgrounds
+        -- default to the Diff groups, which put an orange DiffText bar behind
+        -- H1. Setting the groups directly is what makes rendering follow akira.
+        RenderMarkdownH1          {fg=blue_wire, gui="bold"},
+        RenderMarkdownH2          {fg=blue_wire, gui="bold"},
+        RenderMarkdownH3          {fg=blue_wire, gui="bold"},
+        RenderMarkdownH4          {fg=blue_wire, gui="bold"},
+        RenderMarkdownH5          {fg=blue_wire, gui="bold"},
+        RenderMarkdownH6          {fg=blue_wire, gui="bold"},
+        RenderMarkdownH1Bg        {bg=background.lighten(14)},
+        RenderMarkdownH2Bg        {bg=background.lighten(12)},
+        RenderMarkdownH3Bg        {bg=background.lighten(10)},
+        RenderMarkdownH4Bg        {bg=background.lighten(8)},
+        RenderMarkdownH5Bg        {bg=background.lighten(6)},
+        RenderMarkdownH6Bg        {bg=background.lighten(4)},
+        RenderMarkdownCode        {bg=background.lighten(6)},
+        RenderMarkdownCodeInline  {fg=yellow_wire, bg=background.lighten(6)},
+        RenderMarkdownCodeInfo    {fg=yellow_wire},
+        RenderMarkdownCodeBorder  {fg=background.lighten(12), bg=background.lighten(6)},
+        RenderMarkdownQuote       {fg=foreground, gui="italic"},
+        RenderMarkdownDash        {fg=background.lighten(20)},
+        RenderMarkdownBullet      {fg=red_wire},
+        RenderMarkdownLink        {fg=green_wire},
+        RenderMarkdownLinkTitle   {fg=blue_wire},
+        RenderMarkdownWikiLink    {fg=green_wire},
+        RenderMarkdownUnchecked   {fg=red_wire},
+        RenderMarkdownChecked     {fg=green_wire},
+        RenderMarkdownTableHead   {fg=blue_wire, gui="bold"},
+        RenderMarkdownTableRow    {fg=foreground},
 
         -- Diff captures (gitcommit, .diff files)
         sym"@diff.plus"           {fg=green_wire},
